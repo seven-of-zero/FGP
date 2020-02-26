@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="content">
+    <div class="header">
+      <img src="/img/xxx.png" alt="xxx网">
+      <div>
+      <a href="#">登录</a>
+      <a href="/login/login" class="btn_active">注册</a>
+      </div>
+    </div>
+    <div class="footer">
+        <img src="/img/banner.png" alt="">
+        <div class=".form">
+            <p>欢迎登录</p>
+            <form action="/register/reciveRegister" method="post">
+                <div class="border_box">用户名<input type="text" name="uname" id="uname" placeholder="请输入用户名" onblur="findName()"></div>
+                <span id="userinfo"></span>
+                <div class="border_box">密码<input type="text" name="upwd" id="upwd" placeholder="请输入密码"></div>
+                <div class="border_box">密码<input type="text" name="newupwd" id="newupwd" placeholder="请重新输入密码" onblur="checkPsw()"></div>
+                <span id="checkinfo"></span>
+                <div><button type="submit">注册</button></div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script src="/js/register.js"></script>
+    <script src="/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        function findName() {
+            $.post({
+                url:"/register/reciveUserName",
+                data: {"name": $("#uname").val()},
+                success:function (data) {
+                    if (data.toString()=="OK"){
+                        $("#userinfo").css("color","green");
+                    }else{
+                        $("#userinfo").css("color","red");
+                    }
+                    $("#userinfo").html(data);
+                }
+            })
+        }
+        function checkPsw() {
+            var p1 = document.getElementById("upwd").value;
+            var p2 = document.getElementById("newupwd").value;
+            if (p2==p1){
+                $("#checkinfo").css("color","green");
+                $("#checkinfo").html("正确");
+            }else{
+                $("#checkinfo").css("color","red");
+                $("#checkinfo").html("两次密码不一致");
+            }
+        }
+    </script>
+</body>
+</html>
