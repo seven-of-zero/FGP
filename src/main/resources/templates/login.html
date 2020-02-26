@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+    
+</head>
+<body>
+    <div class="content">
+    <div class="header">
+      <img src="/img/xxx.png" alt="xxx网">
+      <div>
+      <a href="/login.html" class="btn_active">登录</a>
+      <a href="/register/register">注册</a>
+      </div> 
+    </div>
+    <div class="footer">
+        <img src="/img/banner.png" alt="">
+        <div class=".form">
+            <p>欢迎登录</p>
+            <form action="/login/login" method="post">
+                <div class="border_box">用户名<input type="text" name="uname" id="uname" placeholder="请输入用户名"></div>
+                <span id="userinfo" th:text="${msg}"></span>
+                <div class="border_box">密码<input type="text" name="upwd" id="upwd" placeholder="请输入密码"><span class="iconfont icon-yanjing"></span></div>
+                <div>
+                    <input type="checkbox" name="rem" id="rem">
+                    <label for="rem">记住登录密码</label>
+                    <a href="#">忘记密码</a>
+                </div>
+                <div><button type="submit">登录</button></div>
+                <div><a href="#">github登录</a><a href="#">没有账号？立即注册</a></div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <style>
+        #userinfo{
+            color: red;
+        }
+    </style>
+<script src="/js/login.js" type="text/javascript"></script>
+</body>
+</html>
