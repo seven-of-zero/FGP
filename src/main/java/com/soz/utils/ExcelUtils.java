@@ -1,7 +1,7 @@
 package com.soz.utils;
 
-import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.xssf.usermodel.*;
 
 /**
  * 导出Excel的工具类
@@ -18,21 +18,21 @@ public class ExcelUtils {
      * @param wb
      * @return
      */
-    public static HSSFWorkbook getHSSFWorkbook(String sheetName, String[] title, String[][] values, HSSFWorkbook wb) {
+    public static XSSFWorkbook getHSSFWorkbook(String sheetName, String[] title, String[][] values, XSSFWorkbook wb) {
 
-        // 第一步，创建一个HSSFWorkbook，对应一个Excel文件
+        // 创建一个XSSFWorkbook，对应一个Excel文件
         if (wb == null) {
-            wb = new HSSFWorkbook();
+            wb = new XSSFWorkbook();
         }
 
-        // 第二步，在workbook中添加一个sheet,对应Excel文件中的sheet
-        HSSFSheet sheet = wb.createSheet(sheetName);
+        // 在workbook中添加一个sheet,对应Excel文件中的sheet
+        XSSFSheet sheet = wb.createSheet(sheetName);
 
-        // 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制
-        HSSFRow row = sheet.createRow(0);
+        // 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制
+        XSSFRow row = sheet.createRow(0);
 
-        // 第四步，创建单元格，并设置值表头 设置表头居中
-        HSSFCellStyle style = wb.createCellStyle();
+        // 创建单元格，并设置值表头 设置表头居中
+        XSSFCellStyle style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.CENTER); // 创建一个居中格式
         //设置单元格宽度自适应，在此基础上把宽度调至1.5倍
         for (int i = 0; i < title.length; i++) {
@@ -40,7 +40,7 @@ public class ExcelUtils {
             sheet.setColumnWidth(i, sheet.getColumnWidth(i) * 15 / 10);
         }
         // 声明列对象
-        HSSFCell cell = null;
+        XSSFCell cell = null;
 
         // 创建标题
         for (int i = 0; i < title.length; i++) {
